@@ -13,14 +13,22 @@ export async function signupUser(email, password) {
     console.log(newUser);
     const resp = await client.auth.signUp(newUser);
     console.log(resp);
-    
+
 
 }
 
-export async function signInUser(email, password) {}
+export async function signInUser(email, password) {
+    const response = await client.auth.signIn({ email, password });
+
+    return response.user;
+}
 
 export async function checkAuth() {}
 
-export async function redirectIfLoggedIn() {}
+export async function redirectIfLoggedIn() {
+    if (await getUser()) {
+        location.replace('./other-page');
+    }
+}
 
 export async function logout() {}
