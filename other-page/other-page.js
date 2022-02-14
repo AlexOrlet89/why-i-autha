@@ -5,8 +5,8 @@ import { checkAuth, logout } from '../fetch-utils.js';
 checkAuth();
 
 const button = document.getElementById('logout');
-button.addEventListener('click', () => {
-    logout();
-    checkAuth();});
+button.addEventListener('click', async () => {
+    await logout();
+    await checkAuth();});
     
 // add event listener to the logout button and call logout
