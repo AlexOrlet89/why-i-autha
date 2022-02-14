@@ -1,4 +1,4 @@
-import { redirectIfLoggedIn, signInUser, signupUser } from './fetch-utils.js';
+import { checkAuth, redirectIfLoggedIn, signInUser, signupUser } from './fetch-utils.js';
 
 const signInForm = document.getElementById('sign-in');
 const signInEmail = document.getElementById('sign-in-email');
@@ -15,6 +15,7 @@ signUpForm.addEventListener('submit', async (e) => {
     console.log(signUpEmail.value, signUpPassword.value);
     const resp = await signupUser(signUpEmail.value, signUpPassword.value);
     console.log(resp);
+    redirectIfLoggedIn();
 
 });
 // Redirect to /other-page on successful auth
@@ -23,6 +24,7 @@ signInForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const resp = await signInUser(signInEmail.value, signInPassword.value);
     console.log(resp);
+    checkAuth();
 
     redirectIfLoggedIn();
     // send to signInUser which will take data from our eventListener here and returns user data.
